@@ -1,0 +1,12 @@
+{
+  "signup": {
+    "label": "Start Hosting",
+    "url": "/signup",
+    "style": "primary"
+  },
+  "learn": {
+    "label": "Read More",
+    "url": "/features",
+    "style": "secondary"
+  }
+}

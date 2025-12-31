@@ -1,0 +1,14 @@
+{% extends "layouts/base.njk" %} {% block content %}
+<section class="hero hero--{{ campaign.audience }}">
+  <h1>{{ hero.heading }}</h1>
+  <h2>{{ hero.subheading }}</h2>
+  <p class="strapline">{{ hero.strapline }}</p>
+
+  <div class="cta-group">
+    {% set label = ctas[hero.ctaPrimary].label %} {% set url = ctas[hero.ctaPrimary].url %} {% set style =
+    ctas[hero.ctaPrimary].style %} {% include "components/cta.njk" %} {% set label = ctas[hero.ctaSecondary].label %} {%
+    set url = ctas[hero.ctaSecondary].url %} {% set style = ctas[hero.ctaSecondary].style %} {% include
+    "components/cta.njk" %}
+  </div>
+</section>
+{% endblock %}

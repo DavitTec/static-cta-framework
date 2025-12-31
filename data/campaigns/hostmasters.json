@@ -1,0 +1,11 @@
+{
+  "campaign": "hostmasters",
+  "audience": "technical",
+  "hero": {
+    "heading": "Infrastructure-grade hosting for professionals",
+    "subheading": "Built for operators who care about uptime and control",
+    "strapline": "Zero fluff. Full access. Predictable pricing.",
+    "ctaPrimary": "signup",
+    "ctaSecondary": "learn"
+  }
+}
