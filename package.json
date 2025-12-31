@@ -13,7 +13,7 @@
     "copy": "node scripts/copy.js",
     "build:dev": "pnpm clean && pnpm sass && pnpm render && pnpm copy",
     "serve": "live-server dist",
-    "dev": "pnpm build:dev && pnpm serve"
+    "dev": "pnpm build:dev && pnpm serve & pnpm watch"
   },
   "keywords": [],
   "author": "",

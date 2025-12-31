@@ -1,19 +1,27 @@
-// scripts/watch.js
-import { spawn } from "child_process";
-import chokidar from "chokidar";
+import chokidar from 'chokidar';
+import { exec } from 'child_process';
 
-const run = (cmd) => {
-  const proc = spawn(cmd, { shell: true, stdio: "inherit" });
-  proc.on("close", () => {});
-};
+function run(cmd) {
+  exec(cmd, (err, stdout, stderr) => {
+    if (err) {
+      console.error(`✖ ${cmd}`);
+      console.error(stderr);
+    } else {
+      console.log(`✔ ${cmd}`);
+    }
+  });
+}
 
-const watcher = chokidar.watch(["src/**/*", "data/**/*", "config/**/*"], {
-  ignoreInitial: true,
-});
+// Nunjucks templates + data
+chokidar.watch(['src/njk/**/*.njk', 'data/**/*.json'], { ignoreInitial: true }).on('all', () => run('pnpm render'));
 
-console.log("👀 Watching for changes...");
+// Sass
+chokidar.watch(['src/sass/**/*.{sass,scss}'], { ignoreInitial: true }).on('all', () => run('pnpm sass'));
 
-watcher.on("all", () => {
-  console.log("🔄 Rebuilding...");
-  run("pnpm build:dev");
-});
+// JS
+chokidar.watch(['src/js/**/*.js'], { ignoreInitial: true }).on('all', () => run('pnpm copy'));
+
+// Assets (images, favicon, etc)
+chokidar.watch(['src/assets/**/*'], { ignoreInitial: true }).on('all', () => run('pnpm copy'));
+
+console.log('👀 Watching for changes…');
